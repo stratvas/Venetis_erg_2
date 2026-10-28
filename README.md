@@ -1,48 +1,59 @@
+## README (Ελληνική Έκδοση)
+
+# Ευρετηριοποίηση Συμβολοσειρών και Μηχανή Αναζήτησης με AVL Tree
+
+### Περιγραφή
+
+Το έργο υλοποιεί ένα αποδοτικό σύστημα ευρετηριοποίησης συμβολοσειρών και αναζήτησης σε C++, χρησιμοποιώντας ένα αυτοεξισορροπούμενο δυαδικό δέντρο αναζήτησης AVL. Αναπτύχθηκε στο πλαίσιο του μαθήματος Δομές Δεδομένων και υποστηρίζει εισαγωγή, διαγραφή και αναζήτηση συμβολοσειρών, καθώς και αναζητήσεις προθεμάτων με χρήση χαρακτήρων wildcard.
+
+Η υλοποίηση διατηρεί την ισορροπία του δέντρου μέσω συντελεστών ισορροπίας και αυτόματων περιστροφών, χωρίς αποθήκευση του ύψους των κόμβων, εξασφαλίζοντας αποδοτική εκτέλεση των βασικών λειτουργιών.
+
+### Βασικές Λειτουργίες
+
+- Αυτοεξισορροπούμενο AVL Tree με περιστροφές LL, RR, LR και RL.
+- Δυναμική εισαγωγή και διαγραφή συμβολοσειρών.
+- Βελτιστοποιημένη σύγκριση συμβολοσειρών με τεχνική skip-match.
+- Αναζήτηση προθεμάτων με υποστήριξη wildcard (`*`).
+- Αποτελεσματική διαχείριση δυναμικής μνήμης και αποφυγή memory leaks.
+- Ανάλυση χρονικής πολυπλοκότητας με τη σημειογραφία Big-O.
+
+### Τεχνολογίες
+
+C++, AVL Trees, Δυαδικά Δέντρα Αναζήτησης, Αναδρομή, Δείκτες, Δυναμική Διαχείριση Μνήμης, Ανάλυση Αλγορίθμων.
+
+### Μέλη Ομάδας
+
+- Έλενα Παλαιοκώστα: Υλοποίηση AVL Tree, λογική εξισορρόπησης, περιστροφές και διαχείριση μνήμης.
+- Ευστράτιος Βασιλέλλης: Σύγκριση συμβολοσειρών, βελτιστοποιημένη αναζήτηση, αναζητήσεις προθεμάτων με wildcard και ανάλυση απόδοσης.
+
+Τμήμα Πληροφορικής — Πανεπιστήμιο Πειραιώς
+
+## README (English Version)
+
 # AVL Tree String Indexer & Search Engine
 
-An optimized, memory-efficient string indexing and prefix search engine implemented in C++ using an AVL Tree. This project was developed as part of the **Data Structures** course.
+### Description
 
----
+This project implements an efficient string indexing and search engine in C++ using a self-balancing AVL Tree. Developed as part of the Data Structures course, it supports string insertion, deletion, optimized searching, and prefix queries with wildcard support.
 
-## 👥 Team Members & Responsibilities
+The implementation maintains tree balance through balance factors and automatic rotations, without storing node heights, ensuring efficient search and update operations.
 
-*   **Elena Paleocosta (Member A - Core AVL Infrastructure):** Responsible for the design of the AVL node, recursive balanced tree injection, height-independent balance factor propagation logic, tree visualization, automatic multi-directional rotations (LL, RR, LR, RL), and proper garbage collection to prevent memory leaks.
-*   **Stratos Vasilellis (Member B - Search Engine & String Analytics):** Responsible for the custom string comparator, string skip-matching search optimization, advanced prefix querying with wildcards (`*`), performance evaluation (Big-O analysis), and technical report documentation.
+### Key Features
 
----
+- Self-balancing AVL Tree with automatic LL, RR, LR, and RL rotations.
+- Dynamic insertion and deletion of string keys.
+- Optimized string comparison using skip-match search.
+- Prefix searching with wildcard support (`*`).
+- Efficient memory management and prevention of memory leaks.
+- Performance analysis using Big-O notation.
 
-## 🚀 Project Architecture
+### Technologies
 
-The search engine is built on top of a self-balancing binary search tree (AVL Tree) that maintains an optimal height of $O(\log n)$ at all times, ensuring predictable and blazing-fast search operations even with millions of words.
+C++, AVL Trees, Binary Search Trees, Recursion, Pointers, Dynamic Memory Management, Algorithm Analysis.
 
-### 📐 Structural Innovation: Height-Independent Balancing
-Strictly following the project constraints, this implementation **does not store node heights** in memory. Instead, tree balance is managed dynamically during the recursive backtracking phase using a single boolean flag (`heightIncreased` / `heightDecreased`). Balance Factors ($bf = \text{height}(L) - \text{height}(R)$) are updated mathematically using algebraic transitions:
+### Team Members
 
-*   **Left Rotation Balance Update:**
-    $$parent.bf = parent.bf + 1 - \min(0, rightChild.bf)$$
-    $$rightChild.bf = rightChild.bf + 1 + \max(0, parent.bf)$$
-*   **Right Rotation Balance Update:**
-    $$parent.bf = parent.bf - 1 - \max(0, leftChild.bf)$$
-    $$leftChild.bf = leftChild.bf - 1 + \min(0, parent.bf)$$
+- Elena Paleocosta: AVL Tree implementation, balancing logic, rotations, and memory management.
+- Efstratios Vasilellis: String comparison, optimized searching, wildcard prefix queries, and performance analysis.
 
----
-
-## 🛠️ Features
-
-*   **Dynamic AVL Ingestion:** Memory-leak-free insertion of string keys with automated structural rebalancing.
-*   **Four-Way Rotations:** Fully implemented Single (Left/Right) and Double (Left-Right/Right-Left) rotations triggered when $|bf| > 1$.
-*   **Optimized Prefix Search:** Wildcard support (e.g., searching for `datastruct*` returns all matching keys in $O(\log n + s)$ time, where $s$ is the number of matching results).
-*   **Skip-Match Comparison:** Advanced search optimization that remembers parent character matches to skip redundant comparisons down the tree path.
-*   **Deterministic Deletion:** Complete removal of nodes with dynamic sub-tree height collapsing and parent rebalancing.
-
----
-
-## 📂 Repository Structure
-
-```text
-├── AVLNode.h            # Definition of the AVL Tree Node structure
-├── AVLTree.h            # Public API and internal helper signatures
-├── AVLTree.cpp          # Full implementation of Insertion, Deletion, and Rotations
-├── StringEngine.h/.cpp  # String comparison, prefix matching, and skip-search logic
-├── main.cpp             # Interactive console interface and testing suite
-└── README.md            # Project documentation (this file)
+Department of Informatics — University of Piraeus
